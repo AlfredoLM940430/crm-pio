@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import { io } from 'socket.io-client';
 import { toast } from 'react-hot-toast';
+import getEnvVariables from '../../helpers/getEnvVariables';
 
-const SOCKET_URL = 'http://localhost:4320'; 
+const { VITE_SOCKET } = getEnvVariables();
+
+const SOCKET_URL = VITE_SOCKET; 
 
 export const useNotify = (queryClient) => {
     useEffect(() => {
