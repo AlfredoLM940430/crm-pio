@@ -12,22 +12,22 @@ export const InformacionPersonal = ({prospecto}) => {
                 <div className="space-y-5">
                     <div>
                         <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Correo electrónico</p>
-                        <a href={`mailto:${prospecto.email}`} className="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors">
-                            {prospecto.email}
+                        <a href={`mailto:${prospecto?.email}`} className="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors">
+                            {prospecto?.email}
                         </a>
                     </div>
                     <div>
                         <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Teléfono</p>
-                        <p className="text-sm font-medium text-slate-800">{prospecto.phone}</p>
+                        <p className="text-sm font-medium text-slate-800">{prospecto?.phone}</p>
                     </div>
                     <div>
                         <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Ubicación</p>
-                        <p className="text-sm font-medium text-slate-800">{prospecto.branch}</p>
+                        <p className="text-sm font-medium text-slate-800">{prospecto?.branch}</p>
                     </div>
                     <div>
                         <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Producto de interés</p>
                         <span className="inline-block mt-0.5 px-2.5 py-1 text-xs font-medium text-slate-700 bg-slate-100 rounded-md">
-                            {prospecto.interested_product}
+                            {prospecto?.interested_product}
                         </span>
                     </div>
                 </div>

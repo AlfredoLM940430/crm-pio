@@ -24,14 +24,14 @@ export const Bitacora = ({prospectoData, setProspectoData, user, setVista}) => {
     const { values, errors, updateField, updateFields, setFieldError, validate, reset } = useForm(initialSeguimiento);
 
     const isConcluded = prospectoData?.eventos?.some((e) => e.evento === "Conclusión"); 
-    const isOwner = user?.id === prospectoData?.assignedTo._id;
+    const isOwner = user?.id === prospectoData?.assignedTo?._id;
     const hasValidLevel = ["5", "6"].includes(user?.userLevel);
     const isDisabled = isConcluded || !isOwner || !hasValidLevel;
 
     const cargarTiposDisponibles = async () => {
         setCargando(true);
         try {
-            const res = await crmApi.get(`/prospectos/${prospectoData._id}/eventos/disponibles`);
+            const res = await crmApi.get(`/prospectos/${prospectoData?._id}/eventos/disponibles`);
             if (res.data.ok) {
                 setTiposDisponibles(res.data.data);
             }
@@ -221,7 +221,7 @@ export const Bitacora = ({prospectoData, setProspectoData, user, setVista}) => {
 
                 <div className="space-y-3 max-h-56 overflow-y-auto pr-1">
                     {(() => {
-                        const eventosVisibles = prospectoData.eventos.filter(
+                        const eventosVisibles = prospectoData?.eventos?.filter(
                             (entrada) => !eventosExcluidos.includes(entrada.evento)
                         );
 

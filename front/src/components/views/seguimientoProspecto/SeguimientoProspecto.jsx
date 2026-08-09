@@ -49,7 +49,7 @@ function SeguimientoProspecto({setVista, prospectoSeguimiento}) {
             assignedTo: user.id
         };
         addEvento({
-            prospectoId: prospectoData._id,
+            prospectoId: prospectoData?._id,
             data: nuevoEvento
         });
     };
@@ -64,17 +64,17 @@ function SeguimientoProspecto({setVista, prospectoSeguimiento}) {
                 Prospectos
                 </span>
                 <span>/</span>
-                <span className="text-green-900 font-semibold">{prospectoData.firstName}</span>
+                <span className="text-green-900 font-semibold">{prospectoData?.firstName}</span>
             </nav>
 
             <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-lg border border-green-200 shadow-sm">
-                {prospectoData.firstName?.[0]}
-                {prospectoData.lastName?.[0]}
+                {prospectoData?.firstName?.[0]}
+                {prospectoData?.lastName?.[0]}
                 </div>
                 <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
-                    {prospectoData.firstName} {prospectoData.lastName}
+                    {prospectoData?.firstName} {prospectoData?.lastName}
                 </h1>
                 <div className="flex flex-wrap items-center gap-3 mt-1.5">
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-amber-50 text-amber-700 border border-amber-200/80 rounded-full text-xs font-semibold">
