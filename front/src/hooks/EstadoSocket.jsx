@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+import getEnvVariables from '../../helpers/getEnvVariables';
 
-const socket = io('http://localhost:4320');
+const { VITE_SOCKET } = getEnvVariables();
+const socket = io(VITE_SOCKET);
 
 export function EstadoSocket() {
     const [isConnected, setIsConnected] = useState(socket.connected);
