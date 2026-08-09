@@ -25,8 +25,6 @@ function Prospectos({ metrics, setVista, setProspectoSeguimiento }) {
 
     const prospectosFiltrados = useMemo(() => {
         return prospectosQuery.filter(candidato => {
-            console.log(candidato);
-            
             if (filterMethod === 'Estatus') {
                 let matchStatus = true;
 

@@ -34,9 +34,9 @@ export const Bitacora = ({prospectoData, setProspectoData, user, setVista}) => {
 
     // const isOwner = user?.id === prospectoData?.assignedTo?._id; //!
     const hasValidLevel = ["5", "6"].includes(user?.userLevel);
-    const isDisabled = isConcluded || !isOwner || !hasValidLevel;
+    const isDisabled = isConcluded || isOwner || !hasValidLevel;
 
-    console.log(prospectoData?.assignedTo?._id);
+    console.log(isOwner);
     
     const cargarTiposDisponibles = async () => {
         setCargando(true);
