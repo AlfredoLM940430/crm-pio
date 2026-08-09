@@ -46,7 +46,7 @@ function SeguimientoProspecto({setVista, prospectoSeguimiento}) {
             evento: 'Ejecutivo asignado',
             descripcion: 'Ejecutivo asignado al prospecto',
             fecha: new Date(),
-            assignedTo: user.id
+            assignedTo: user?.id
         };
         addEvento({
             prospectoId: prospectoData?._id,

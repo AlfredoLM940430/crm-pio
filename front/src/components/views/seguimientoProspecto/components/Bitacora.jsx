@@ -24,10 +24,20 @@ export const Bitacora = ({prospectoData, setProspectoData, user, setVista}) => {
     const { values, errors, updateField, updateFields, setFieldError, validate, reset } = useForm(initialSeguimiento);
 
     const isConcluded = prospectoData?.eventos?.some((e) => e.evento === "Conclusión"); 
-    const isOwner = user?.id === prospectoData?.assignedTo?._id;
+    
+    // Extraemos los IDs asegurando compatibilidad con user.id o user._id
+    const userId = user?.id || user?._id;
+    const assignedToId = prospectoData?.assignedTo;
+
+    // Comparamos directamente los dos textos
+    const isOwner = Boolean(userId && assignedToId && userId === assignedToId);
+
+    // const isOwner = user?.id === prospectoData?.assignedTo?._id; //!
     const hasValidLevel = ["5", "6"].includes(user?.userLevel);
     const isDisabled = isConcluded || !isOwner || !hasValidLevel;
 
+    console.log(prospectoData?.assignedTo?._id);
+    
     const cargarTiposDisponibles = async () => {
         setCargando(true);
         try {
@@ -222,7 +232,7 @@ export const Bitacora = ({prospectoData, setProspectoData, user, setVista}) => {
                 <div className="space-y-3 max-h-56 overflow-y-auto pr-1">
                     {(() => {
                         const eventosVisibles = prospectoData?.eventos?.filter(
-                            (entrada) => !eventosExcluidos.includes(entrada.evento)
+                            (entrada) => !eventosExcluidos.includes(entrada?.evento)
                         );
 
                         if (eventosVisibles.length === 0) {
@@ -238,23 +248,23 @@ export const Bitacora = ({prospectoData, setProspectoData, user, setVista}) => {
                             "Conclusión": "bg-blue-500",
                         };
 
-                        return eventosVisibles.map((entrada) => (
-                            <div key={entrada._id} className="flex gap-3 text-sm">
+                        return eventosVisibles?.map((entrada) => (
+                            <div key={entrada?._id} className="flex gap-3 text-sm">
                                 <span
                                     className={`shrink-0 w-1.5 h-1.5 mt-2 rounded-full ${
-                                        colorPorTipo[entrada.evento] || "bg-emerald-500"
+                                        colorPorTipo[entrada?.evento] || "bg-emerald-500"
                                     }`}
                                 />
                                 <div className="min-w-0">
                                     <p className="text-slate-700 break-words">
                                         <span className="font-semibold text-slate-900">
-                                            {entrada.evento}
+                                            {entrada?.evento}
                                         </span>{" "}
-                                        — {entrada.descripcion}
+                                        — {entrada?.descripcion}
                                     </p>
                                     <p className="text-[11px] text-slate-400 mt-0.5">
-                                        {new Date(entrada.fecha).toLocaleDateString()}{" "}
-                                        {new Date(entrada.fecha).toLocaleTimeString([], {
+                                        {new Date(entrada?.fecha).toLocaleDateString()}{" "}
+                                        {new Date(entrada?.fecha).toLocaleTimeString([], {
                                             hour: "2-digit",
                                             minute: "2-digit",
                                         })}
