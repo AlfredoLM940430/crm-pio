@@ -6,6 +6,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import './index.css'
 import App from './App.jsx'
 
+window.addEventListener('vite:preloadError', () => {
+    window.location.reload();
+});
+
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
